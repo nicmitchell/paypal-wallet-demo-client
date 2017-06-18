@@ -1,0 +1,221 @@
+:root {
+  --border-color-grey: #eeeeee;
+  --background-color-grey: #f5f7f9;
+  --theme-color-blue: #0070ba;
+  --section-padding: 1rem;
+  --border-radius: 0.4rem;
+  /*--sprite-sheet: 'url("./hermes_window_sprite_v16_2x.png")';
+  --sprite-logos: 'url("http://localhost:3000/sprite_logos_wallet_v11_2x.png")';*/
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+
+div {
+  box-sizing: border-box;
+  position: relative;
+}
+
+a {
+  color: var(--theme-color-blue);
+}
+
+input {
+  border-radius: var(--border-radius);
+}
+
+label {
+  font-size: 1rem;
+}
+
+.app-wrapper {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.content {
+  display: flex;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color-grey);
+  min-height: 38.5rem;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.store-name {
+  padding: 2rem 0;
+}
+
+/* left side of wallet */
+
+
+.left {
+  width: 43%;
+  border-right: 1px solid var(--border-color-grey);
+}
+
+.action-title {
+  margin-top: 1.5rem;
+  border-bottom: 1px solid var(--border-color-grey);
+}
+
+.action-title h4 {
+  text-align: center;
+  font-weight: 100;
+  font-size: 1.6rem;
+}
+
+.back-arrow {
+  background: url('./hermes_window_sprite_v16_2x.png');
+  background-repeat: no-repeat;
+  background-size: 1500%;
+  position: absolute;
+  top: -0.5rem;
+  height: 2.4rem;
+  width: 2.5rem;
+  background-position: 68% 59%;
+}
+
+.user-action, .summary {
+  padding: var(--section-padding);
+}
+
+.btn-primary {
+  background-color: var(--theme-color-blue);
+}
+
+.flex-row input:first-of-type, .form-group:first-of-type {
+  margin-right: 1rem;
+}
+
+.accepted-payment-methods {
+  margin: 1rem 0;
+  padding: 0 1.5rem;
+  background-color: var(--background-color-grey);
+  border: 1px solid var(--border-color-grey);
+  height: 3.5rem;
+}
+
+.accepted-payment-methods > .card-logo {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.card-logo {
+  background: url('./sprite_logos_wallet_v11_2x.png');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 2.15rem;
+  width: 3.4rem;
+  top: 0.6rem;
+  right: 0.6rem;
+}
+
+.card-logo.visa {
+  background-position-y: 3.6%;
+}
+
+.card-logo.mastercard {
+  background-position-y: 7.4%;
+}
+
+.card-logo.amex {
+  background-position-y: 11%;
+  margin-right: 0;
+}
+
+.card-logo.discover {
+  background-position-y: 14.7%;
+}
+
+.card-logo.back {
+  background-position-y: 69.3%;
+}
+
+.card-logo.bank {
+  background-position-y: 44.1%;
+}
+
+
+/* Ugh. Bootstrap :`( */
+.has-feedback label~.form-control-feedback.card-logo.back {
+  top: 3rem;
+}
+
+/* right side of wallet */
+
+.right {
+  width: 57%;
+  padding: 2rem;
+  padding-right: 1rem;
+  background-color: var(--background-color-grey);
+}
+
+.right hr {
+  margin: 1.5rem 0;
+}
+
+.right header .checkout-total {
+  font-size: 1.5rem;
+  vertical-align: top;
+  position: relative;
+  top: 0.75rem;
+  text-align: right;
+  display: inline-block;
+}
+
+.right header .logo {
+  background: url('./hermes_window_sprite_v16_2x.png');
+  background-repeat: no-repeat;
+  background-position: 0 14.9%;
+  background-size: 200%;
+  height: 3.7rem;
+  width: 15rem;
+  display: inline-block;
+}
+
+.right header .checkout-total .cart-icon {
+  background: url('./hermes_window_sprite_v16_2x.png');
+  background-repeat: no-repeat;
+  background-size: 1500%;
+  position: absolute;
+  top: 0.45rem;
+  left: -2rem;
+  height: 1.4rem;
+  width: 1.5rem;
+}
+
+.right section .salutation {
+  font-size: 1rem;
+  margin-bottom: 1.25rem
+}
+
+.right section .change-method {
+  font-size: 1rem;
+  top: 1.25rem;
+  text-align: right;
+  display: inline-block;
+}
+
+.right section .checkout-total:after {
+  content: 'USD';
+  font-size: 1rem;
+  position: absolute;
+  top: 3rem;
+  right: 0
+}
+
+.right h5.payment-selected {
+  padding-left: 3rem;
+}
+
+.right .payment-selected .card-logo.bank {
+  position: absolute;
+  left: 0;
+}
