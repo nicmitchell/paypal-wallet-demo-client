@@ -31,34 +31,47 @@ class AddPayment extends Component {
         value = value.match(new RegExp('.{1,2}', 'g')).join('/');
       }
     }
-    console.log(value)
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = (e, callback) => {
     // send to the api
     // go back to Wallet view
     e.preventDefault();
     const data = this.state;
     
-    fetch('/add-card', {
+    return fetch('/api/add-card', {
       method: 'POST',
-      body: data,
+      body: JSON.stringify(data),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
     })
-    .then((response) => {
-      return response.json()
-    })
-    .then((json) => {
-      console.log(json)
-    })
+    .then(this.checkStatus)
+    .then(this.parseJSON)
+    .then((res) => console.log('finished!!!', res));
   }
 
   handleCardClick = (e) => {
     if (e.target.dataset.accountType) {
       const accountType = e.target.dataset.accountType
-      console.log(accountType);
       this.setState({ accountType });
     }
+  }
+
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response;
+    }
+    const error = new Error(`HTTP Error ${response.statusText}`);
+    error.status = response.statusText;
+    error.response = response;
+    throw Error(error);
+  }
+
+  parseJSON(response) {
+    return response.json();
   }
 
   render() {
@@ -92,7 +105,7 @@ class AddPayment extends Component {
             </FormGroup>
             <FormGroup>
               <ControlLabel>CSC</ControlLabel>
-              <FormControl type="text" name="csc" placeholder="3 digits" maxLength="3" onChange={ this.handleChange } value={ this.state.expiration }/>
+              <FormControl type="text" name="csc" placeholder="3 digits" maxLength="3" onChange={ this.handleChange } value={ this.state.csc }/>
               <FormControl.Feedback>
                 <div className="card-logo back"></div>
               </FormControl.Feedback>

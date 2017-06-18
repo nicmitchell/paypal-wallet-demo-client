@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import AddPayment from './AddPayment';
 import CurrentPayment from './CurrentPayment';
 import './App.css';
