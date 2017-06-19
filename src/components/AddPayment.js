@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import '../style/AddPayment.css';
 
 class AddPayment extends Component {
   constructor(props) {
@@ -64,7 +65,7 @@ class AddPayment extends Component {
     if (response.status >= 200 && response.status < 300) {
       return response;
     }
-    const error = new Error(`HTTP Error ${response.statusText}`);
+    const error = new Error(response.statusText);
     error.status = response.statusText;
     error.response = response;
     throw Error(error);
@@ -75,10 +76,11 @@ class AddPayment extends Component {
   }
 
   render() {
+    const className = `left${this.props.appState.actionState === 'addPayment' ? ' show' : ''}`;
     return (
-      <div className="left">
+      <div className={ className }>
         <div className="action-title">
-        <div className="back-arrow"></div>
+        <button type="button" className="back-arrow" onClick={ (e) => this.props.goTo('wallet') }></button>
           <h4>Add debit or credit card</h4>
         </div>
         <Form className="user-action" onSubmit={ this.handleSubmit } method="POST">

@@ -31,6 +31,12 @@ label {
   font-size: 1rem;
 }
 
+button {
+  outline: none;
+  border: 0;
+  background: transparent;
+}
+
 .app-wrapper {
   max-width: 60rem;
   margin: 0 auto;
@@ -46,6 +52,7 @@ label {
 .flex-row {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .store-name {
@@ -58,6 +65,11 @@ label {
 .left {
   width: 43%;
   border-right: 1px solid var(--border-color-grey);
+  display: none;
+}
+
+.left.show {
+  display: block;
 }
 
 .action-title {
@@ -72,7 +84,7 @@ label {
 }
 
 .back-arrow {
-  background: url('./hermes_window_sprite_v16_2x.png');
+  background: url('../hermes_window_sprite_v16_2x.png');
   background-repeat: no-repeat;
   background-size: 1500%;
   position: absolute;
@@ -108,7 +120,7 @@ label {
 }
 
 .card-logo {
-  background: url('./sprite_logos_wallet_v11_2x.png');
+  background: url('../sprite_logos_wallet_v11_2x.png');
   background-repeat: no-repeat;
   background-size: 100%;
   height: 2.15rem;
@@ -142,6 +154,33 @@ label {
   background-position-y: 44.1%;
 }
 
+.checkmark {
+  background: url('../hermes_window_sprite_v16_2x.png');
+  background-repeat: no-repeat;
+  background-position: 85% 0%;
+  background-size: 1000%;
+  height: 2rem;
+  width: 2.5rem;
+  display: none;
+}
+
+.wallet .card-logo {
+  top: 0;
+  right: 0;
+}
+
+.wallet .flex-row {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color-grey);
+}
+
+.wallet .flex-row .account-details {
+  flex: 2;
+}
+
+.wallet .flex-row h4.account-name {
+  margin-bottom: 0;
+}
 
 /* Ugh. Bootstrap :`( */
 .has-feedback label~.form-control-feedback.card-logo.back {
@@ -171,7 +210,7 @@ label {
 }
 
 .right header .logo {
-  background: url('./hermes_window_sprite_v16_2x.png');
+  background: url('../hermes_window_sprite_v16_2x.png');
   background-repeat: no-repeat;
   background-position: 0 14.9%;
   background-size: 200%;
@@ -181,7 +220,7 @@ label {
 }
 
 .right header .checkout-total .cart-icon {
-  background: url('./hermes_window_sprite_v16_2x.png');
+  background: url('../hermes_window_sprite_v16_2x.png');
   background-repeat: no-repeat;
   background-size: 1500%;
   position: absolute;
