@@ -1,0 +1,42 @@
+.wallet .checkmark {
+  background: url('../hermes_window_sprite_v16_2x.png');
+  background-repeat: no-repeat;
+  background-position: 85% 0%;
+  background-size: 1000%;
+  height: 2rem;
+  width: 2.5rem;
+  display: none;
+}
+
+.wallet .card-logo {
+  top: 0;
+  height: 2.2rem;
+  left: 0;
+  margin-right: 1.15rem;
+}
+
+.wallet .card-logo.bank {
+  height: 2.1rem;
+}
+
+.wallet .card-logo.amex {
+  margin-right: 1.15rem;
+}
+
+.wallet .accounts .flex-row {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color-grey);
+}
+
+.wallet .accounts .flex-row:hover {
+  background: var(--background-color-grey);
+}
+
+.wallet .flex-row .account-details {
+  flex: 2;
+}
+
+.wallet .flex-row h4.account-name {
+  margin-bottom: 0;
+}
+

@@ -1,0 +1,26 @@
+.flex-row input:first-of-type, .form-group:first-of-type {
+  margin-right: 1rem;
+}
+
+.accepted-payment-methods {
+  margin: 1rem 0;
+  padding: 0 1.5rem;
+  background-color: var(--background-color-grey);
+  border: 1px solid var(--border-color-grey);
+  height: 3.5rem;
+}
+
+.accepted-payment-methods > .card-logo {
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.accepted-payment-methods .card-logo.amex{
+  margin-right: 0;
+}
+
+
+/* Ugh. Bootstrap :`( */
+.has-feedback label~.form-control-feedback.card-logo.back {
+  top: 3rem;
+}

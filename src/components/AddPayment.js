@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
-import '../style/AddPayment.css';
+import '../styles/AddPayment.css';
 
 class AddPayment extends Component {
   constructor(props) {
@@ -80,7 +80,7 @@ class AddPayment extends Component {
     return (
       <div className={ className }>
         <div className="action-title">
-        <button type="button" className="back-arrow" onClick={ (e) => this.props.goTo('wallet') }></button>
+          <button type="button" className="link back-arrow" onClick={ (e) => this.props.goTo('wallet') }></button>
           <h4>Add debit or credit card</h4>
         </div>
         <Form className="user-action" onSubmit={ this.handleSubmit } method="POST">

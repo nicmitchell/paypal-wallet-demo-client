@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { formatAccountNumber, formatAccountName } from '../helpers';
+import '../styles/CurrentPayment.css';
 
 class CurrentPayment extends Component {
-  constructor() {
-    super();
+  awkward = (e) => {
+    alert('Well, this just got awkward ...');
   }
-
+  
   render() {
+    const { firstName='', accountType='', cardNumber='' } = this.props.account;
     return (
       <div className="summary disabled right">
         <header className="flex-row">
@@ -14,12 +17,14 @@ class CurrentPayment extends Component {
         </header>
         <hr />
         <section>
-          <div className="salutation">Hi, Michael! <a href="#">Not you?</a></div>
+          <div className="salutation">Hi, { firstName }!<button type="button" className="link" onClick={ this.awkward }>Not you?</button></div>
           <div className="flex-row">
-            <h4>Pay with</h4><div className="change-method"><a href="#">Change ></a></div>
+            <h4>Pay with</h4>
+            <button type="button" className="link smaller">Change ></button>
           </div>
-          <div className="flex-row">
-            <h5 className="payment-selected"><div className="card-logo bank"></div>CITIBANK FSB x-1234</h5>
+          <div className="flex-row payment-selected">
+            <div className={ `card-logo ${accountType}` }></div>
+            <h5 className="account-name">{ formatAccountName(accountType) } { formatAccountNumber(cardNumber) }</h5>
             <h5 className="checkout-total">$26.99</h5>
           </div>
         </section>
