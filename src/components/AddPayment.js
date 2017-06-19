@@ -40,6 +40,7 @@ class AddPayment extends Component {
       body: JSON.stringify(data)
     }
     const callback = (account) => {
+      this.resetForm();
       this.props.addCardToState(account);
       this.props.goTo('wallet');
     }
@@ -52,6 +53,21 @@ class AddPayment extends Component {
       const accountType = e.target.dataset.accountType
       this.setState({ accountType });
     }
+  }
+
+  resetForm() {
+    this.setState(this.defaultState);
+  }
+
+  get defaultState() {
+    return {
+      firstName: '',
+      lastName: '',
+      accountType: 'visa',
+      cardNumber: '',
+      expiration: '',
+      csc: '',
+    };
   }
 
   render() {
