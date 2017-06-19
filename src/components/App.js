@@ -12,7 +12,7 @@ class App extends Component {
     this.state = {
       accounts: [],
       currentSelectedPayment: {},
-      actionState: 'manageWallet',
+      actionState: 'wallet',
     };
   }
 
