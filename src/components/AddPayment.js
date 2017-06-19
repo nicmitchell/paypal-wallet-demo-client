@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { apiAction, prettifyAccountNumber, prettifyExpiration } from '../helpers';
 import '../styles/AddPayment.css';
 
 class AddPayment extends Component {
@@ -19,39 +20,31 @@ class AddPayment extends Component {
     const name = e.target.name;
     let value = e.target.value
     if (name === 'cardNumber') {
-      // format card number
-      value = value.split(' ').join('');
-      if (value.length > 0) {
-        value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
-      }
+      value = prettifyAccountNumber(value);
     }
     if (name === 'expiration') {
-      // format expiration date
-      value = value.split('/').join('');
-      if (value.length > 0) {
-        value = value.match(new RegExp('.{1,2}', 'g')).join('/');
-      }
+      value = prettifyExpiration(value);
     }
     this.setState({ [name]: value });
   }
 
-  handleSubmit = (e, callback) => {
+  handleSubmit = (e) => {
     // send to the api
     // go back to Wallet view
     e.preventDefault();
     const data = this.state;
-    
-    return fetch('/api/add-card', {
+
+    const options = {
+      action: 'add-card',
       method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(this.checkStatus)
-    .then(this.parseJSON)
-    .then((res) => console.log('finished!!!', res));
+      body: JSON.stringify(data)
+    }
+    const callback = (account) => {
+      this.props.addCardToState(account);
+      this.props.goTo('wallet');
+    }
+
+    apiAction(options, callback);
   }
 
   handleCardClick = (e) => {
@@ -59,20 +52,6 @@ class AddPayment extends Component {
       const accountType = e.target.dataset.accountType
       this.setState({ accountType });
     }
-  }
-
-  checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-      return response;
-    }
-    const error = new Error(response.statusText);
-    error.status = response.statusText;
-    error.response = response;
-    throw Error(error);
-  }
-
-  parseJSON(response) {
-    return response.json();
   }
 
   render() {

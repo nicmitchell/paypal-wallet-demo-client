@@ -3,9 +3,12 @@
 
 .right {
   width: 57%;
-  padding: 2rem;
-  padding-right: 1rem;
+  padding: 1rem 2rem;
   background-color: var(--background-color-grey);
+}
+
+.right .flex-row:first-of-type {
+  padding-top: 1.5rem;
 }
 
 .right hr {
@@ -14,11 +17,6 @@
 
 .right header .checkout-total {
   font-size: 1.5rem;
-  vertical-align: top;
-  position: relative;
-  top: 0.75rem;
-  text-align: right;
-  display: inline-block;
 }
 
 .right header .logo {
@@ -28,7 +26,6 @@
   background-size: 200%;
   height: 3.7rem;
   width: 15rem;
-  display: inline-block;
 }
 
 .right header .checkout-total .cart-icon {
@@ -59,7 +56,7 @@
   right: 0
 }
 
-.right .flex-row.payment-selected .account-name{
+.right .flex-row.payment-selected .account-name {
   flex: 2;
 }
 

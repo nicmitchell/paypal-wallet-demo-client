@@ -1,0 +1,8 @@
+.manage-actions .link:first-of-type {
+  border-right: 1px solid var(--border-color-grey);
+}
+
+.manage-actions .link {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}

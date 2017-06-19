@@ -37,6 +37,15 @@
 }
 
 .wallet .flex-row h4.account-name {
+  font-size: 1.6rem;
   margin-bottom: 0;
 }
 
+.wallet .flex-row.wallet-actions {
+  margin-bottom: 1rem;
+}
+
+.wallet .close {
+  margin-right: 1rem;
+  color: black;
+}

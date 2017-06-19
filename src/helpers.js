@@ -1,8 +1,8 @@
-export const formatAccountNumber = (account) => {
+export const accountNumberObfuscate = (account) => {
   return `x-${account.slice(-4)}`;
 };
 
-export const formatAccountName = (name) => {
+export const accountNameCase = (name) => {
   const accounts = {
     visa: 'Visa',
     mastercard: 'MasterCard',
@@ -13,11 +13,27 @@ export const formatAccountName = (name) => {
   return accounts[name];
 };
 
+export const prettifyAccountNumber = (number) => {
+  number = number.split(' ').join('');
+  if (number.length > 0) {
+    number = number.match(new RegExp('.{1,4}', 'g')).join(' ');
+  }
+  return number;
+}
+
+export const prettifyExpiration = (number) => {
+  number = number.split('/').join('');
+  if (number.length > 0) {
+    number = number.match(new RegExp('.{1,2}', 'g')).join('/');
+  }
+  return number;
+}
+
 export const apiAction = (options, callback) => {
-  const { action, method, data } = options;
+  const { action, method, body } = options;
   return fetch(`/api/${action}`, {
     method: method,
-    body: data,
+    body: body,
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'

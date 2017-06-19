@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { formatAccountNumber, formatAccountName } from '../helpers';
+import { accountNumberObfuscate, accountNameCase } from '../helpers';
 import '../styles/CurrentPayment.css';
 
 class CurrentPayment extends Component {
   awkward = (e) => {
-    alert('Well, this just got awkward ...');
+    window.alert('Well, this just got awkward ...');
   }
   
   render() {
@@ -20,11 +20,11 @@ class CurrentPayment extends Component {
           <div className="salutation">Hi, { firstName }!<button type="button" className="link" onClick={ this.awkward }>Not you?</button></div>
           <div className="flex-row">
             <h4>Pay with</h4>
-            <button type="button" className="link smaller">Change ></button>
+            <button type="button" className="link smaller" onClick={ (e) => this.props.goTo('wallet') }>Change ></button>
           </div>
           <div className="flex-row payment-selected">
             <div className={ `card-logo ${accountType}` }></div>
-            <h5 className="account-name">{ formatAccountName(accountType) } { formatAccountNumber(cardNumber) }</h5>
+            <h5 className="account-name">{ accountNameCase(accountType) } { accountNumberObfuscate(cardNumber) }</h5>
             <h5 className="checkout-total">$26.99</h5>
           </div>
         </section>

@@ -3,7 +3,6 @@
   --background-color-grey: #f5f7f9;
   --button-color-blue: #0070ba;
   --link-color-blue: #009cde;
-  --section-padding: 1rem;
   --border-radius: 0.4rem;
 }
 
@@ -42,7 +41,7 @@ button.link {
 }
 
 .app-wrapper {
-  max-width: 60rem;
+  max-width: 76rem;
   margin: 0 auto;
 }
 
@@ -59,21 +58,19 @@ button.link {
   align-items: center;
 }
 
+.show {
+  display: block;
+}
+
 .store-name {
   padding: 2rem 0;
 }
 
 /* left side of wallet */
-
-
 .left {
   width: 43%;
   border-right: 1px solid var(--border-color-grey);
   display: none;
-}
-
-.show {
-  display: block;
 }
 
 .action-title {
@@ -98,14 +95,11 @@ button.link {
   background-position: 68% 59%;
 }
 
-.user-action, .summary {
-  padding: var(--section-padding);
-}
-
 .btn-primary {
   background-color: var(--button-color-blue);
 }
 
+/* Logos */
 .card-logo {
   background: url('../sprite_logos_wallet_v11_2x.png');
   background-repeat: no-repeat;

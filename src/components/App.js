@@ -38,6 +38,30 @@ class App extends Component {
     this.setState({ currentSelectedPayment });
   }
 
+  addCardToState = (account) => {
+    const accounts = this.state.accounts;
+    accounts.push(account);
+    this.setState({ accounts });
+  }
+
+  removeCardFromState = (account) => {
+    const oldAccounts = this.state.accounts;
+    const current = this.state.currentSelectedPayment
+    const accounts = oldAccounts.reduce((prev, current) => {
+      if (current._id === account.id) {
+        return prev;
+      } else {
+        return prev.concat(current);
+      }
+    }, []);
+
+    if (account.id === current._id) {
+      this.setCurrent(accounts[0]);
+    }
+
+    this.setState({ accounts });
+  }
+
   render() {
     return (
       <div className="app-wrapper">
@@ -45,8 +69,8 @@ class App extends Component {
           <h3>Toys R Us</h3>
         </header>
         <section className="content">
-          <AddPayment appState={ this.state } goTo={ this.goTo }/>
-          <ManageWallet appState={ this.state } goTo={ this.goTo }/>
+          <AddPayment appState={ this.state } goTo={ this.goTo } addCardToState={ this.addCardToState }/>
+          <ManageWallet appState={ this.state } goTo={ this.goTo } removeCardFromState={ this.removeCardFromState }/>
           <Wallet appState={ this.state} goTo={ this.goTo } setCurrent={ this.setCurrent }/>
           <CurrentPayment account={ this.state.currentSelectedPayment } goTo={ this.goTo }/>
         </section> 

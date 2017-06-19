@@ -1,8 +1,29 @@
 import React, { Component } from 'react';
-import { formatAccountNumber, formatAccountName } from '../helpers';
+import { accountNumberObfuscate, accountNameCase, apiAction } from '../helpers';
 import '../styles/ManageWallet.css';
 
 class ManageWallet extends Component {
+  updateAccount = (e) => {
+    e.preventDefault();
+    window.alert(`I can't let you do that Dave...`);
+  }
+
+  deleteAccount = (e, account) => {
+    e.preventDefault();
+    const confirmed = window.confirm(`This will permanently remove this card. Are you sure you would like to proceed?`);
+    if (confirmed) {
+      const options = {
+        action: 'delete-card',
+        method: 'POST',
+        body: JSON.stringify(account)
+      }
+      const callback = (account) => {
+        this.props.removeCardFromState(account);
+      }
+      apiAction(options, callback);
+    }
+  }
+
   render() {
     const accounts = this.props.appState.accounts;
     const className = `wallet left${this.props.appState.actionState === 'manageWallet' ? ' show' : ''}`;
@@ -15,16 +36,17 @@ class ManageWallet extends Component {
         <div className="accounts">
           {
             accounts.map((account, idx) => {
-              const activeAccount = account._id === this.props.appState.currentSelectedPayment._id;
-              const isActive = (activeAccount) ? ' show' : '';
               return (
-                <div className="flex-row" key={ account._id } onClick={ (e) => this.selectPayment(e, account) }>
+                <div className="flex-row" key={ account._id }>
                   <div className={ `card-logo ${ account.accountType } `}></div>
                   <div className="account-details"> 
-                    <h4 className="account-name">{ formatAccountName(account.accountType) }</h4>
-                    <span className="small">{ formatAccountNumber(account.cardNumber) }</span>
+                    <h4 className="account-name">{ accountNameCase(account.accountType) }</h4>
+                    <span className="small">{ accountNumberObfuscate(account.cardNumber) }</span>
                   </div>
-                  <div className={ `checkmark${isActive} `} ></div>
+                  <div className="manage-actions">
+                    <button type="button" className="link smaller" onClick={ (e) => this.updateAccount(e, account) }>Update</button>
+                    <button type="button" className="link smaller" onClick={ (e) => this.deleteAccount(e, account) }>Delete</button>
+                  </div>
                 </div>
               )
             })

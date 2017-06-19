@@ -19,8 +19,11 @@
   margin-right: 0;
 }
 
-
-/* Ugh. Bootstrap :`( */
+/* Ugh. React-Bootstrap fail  :`( */
 .has-feedback label~.form-control-feedback.card-logo.back {
   top: 3rem;
+}
+
+.user-action {
+  padding: 1rem;
 }
